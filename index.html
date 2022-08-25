@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Document
+        </title>
+        <style>
+            * {
+                margin: 0rem;
+                padding: 0rem;
+
+            }
+            .center {
+                width: 100vw;        
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: azure;
+            }
+            h1{
+                text-align: center;
+                font-size: 2.5rem;
+                font-weight: bold;
+                color: black;
+                text-transform: uppercase;
+                letter-spacing: 0.3rem;
+                text-shadow: 1px 3px 2px rgba(0,0,0,3);
+
+            }
+
+            span {
+                opacity: 0;
+                transition: all 1s;
+
+            }
+
+            span.fade {
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="center">
+            <h1 class="author">Hitesh Katekhaye</h1>
+        </div>
+        <script>
+            const text = document.querySelector('.author');
+            const strText = text.textContent;
+            const sliptText = strText.split("");
+            text.textContent = "";
+            for (let i=0; i<sliptText.length; i++){
+                text.innerHTML += "<span>" + sliptText[i] + "</span>";
+            }
+
+            let char = 0;
+            let timer = setInterval(onright, 160);
+
+            function onright(){
+                const span = text.querySelectorAll("span")[char];
+                span.classList.add('fade');
+                char++;
+
+                if (char === sliptText.length){
+                    complete();
+                    return;
+                }
+            }
+
+            function complete(){
+                clearInterval(timer);
+                timer = null;
+            }
+        </script>
+    </body>
+</html>
+<!--put 2*50vw & 2*50vh instead 100vw & 100vh resp. in line 14 & 15 -->
